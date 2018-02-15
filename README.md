@@ -21,7 +21,7 @@ git clone https://github.com/arnaudvl/deep-learning-keras
 
 ## Functionality
 
-There are 3 modules in dlkeras: cnn, cnn_transfer_learning and dnn.
+There are 3 main modules in dlkeras: cnn, cnn_transfer_learning and dnn.
 
 Each of them allow you to create and train neural networks, make predictions,
 print the training history, save models, run cross-validation and make out-of-fold predictions in a few lines of code.
