@@ -24,7 +24,8 @@ class NN():
                                               'bias_initializer':'zeros','kernel_regularizer_l1':0.2}
                                   max_pooling2d_1 = {'type':'max_pooling2d','pool_size':(2,2),'strides':2,'padding':'valid'}
                                   dropout_1 = {'type':'dropout','dropout':0.3}
-                                  fc_1 = {'type':'fc','hidden_units':512,'activation':'relu','kernel_initializer':'glorot_uniform',
+                                  fc_1 = {'type':'fc','hidden_units':512,'activation':'relu',
+                                          'kernel_initializer':'glorot_uniform',
                                           'bias_initializer':'zeros','kernel_regularizer_l1':1.,'dropout':0.2}
             X_aux -- np array, auxiliary input for multi-input models, default=None
             output_layer -- str, output layer type (https://keras.io/activations), default='softmax'
@@ -170,8 +171,8 @@ class NN():
         elif self._val_loss=='binary_crossentropy':
             metric = K.eval(binary_crossentropy(K.variable(y_true), K.variable(y_pred)))
         else:
-            raise ValueError('Invalid value for "custom_eval_stopping["name"], "roc-auc","norm-gini", \
-                             "mean_squared_error","mean_absolute_error","categorical_crossentropy","binary_crossentropy" supported.')
+            raise ValueError('Invalid value for "custom_eval_stopping["name"], "roc-auc","norm-gini","mean_squared_error", \
+                             "mean_absolute_error","categorical_crossentropy","binary_crossentropy" supported.')
         return metric
     
     
@@ -440,8 +441,8 @@ class MetricsLog(Callback):
         elif self._metric=='binary_crossentropy':
             metric = K.eval(binary_crossentropy(K.variable(y_true), K.variable(y_pred)))
         else:
-            raise ValueError('Invalid value for "custom_eval_stopping["name"], "roc-auc","norm-gini", \
-                             "mean_squared_error","mean_absolute_error","categorical_crossentropy","binary_crossentropy" supported.')
+            raise ValueError('Invalid value for "custom_eval_stopping["name"], "roc-auc","norm-gini","mean_squared_error", \
+                             "mean_absolute_error","categorical_crossentropy","binary_crossentropy" supported.')
         return metric
 
 
