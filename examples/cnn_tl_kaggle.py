@@ -1,16 +1,16 @@
 
 # For the transfer learning example we will use the kaggle dataset
-# from the Statoil competition. In this competition, we need to classify
-# ships and icebergs from satellite images.
+# from the Statoil competition. In this competition, we need to
+# classify ships and icebergs from satellite images.
 # The data can be found through the link below:
 # https://www.kaggle.com/c/statoil-iceberg-classifier-challenge/data
 
 # directory where results will be saved
-save_dir = '/home/arnaudvl/ML/kaggle/statoil/output/test/'
+save_dir = '/.../output/'
 
 # specify train and test data paths
-path_train = '/home/arnaudvl/ML/kaggle/statoil/input/train.json'
-path_test = '/home/arnaudvl/ML/kaggle/statoil/input/test.json'
+path_train = '/.../input/train.json'
+path_test = '/.../input/test.json'
 
 # load data
 train_raw = pd.read_json(path_train, precise_float=True)
@@ -42,11 +42,11 @@ y = train_labels
 # pick model pre-trained on imagenet without the top layer
 base_model = 'VGG16' # more info: https://arxiv.org/abs/1409.1556
 
-# deeper layers of neural networks tend to learn more dataset specific features
-# while the first layers learn more general features
-# since we are trying to classify icebergs/ships from satellite images, our dataset
-# is quite different from imagenet, so we remove deeper network layers from VGG16
-# more info: https://arxiv.org/abs/1411.1792
+# Deeper layers of neural networks tend to learn more dataset specific features
+#   while the first layers learn more general features.
+# Since we are trying to classify icebergs/ships from satellite images, our dataset
+#   is quite different from imagenet, so we remove deeper network layers from VGG16.
+# More info: https://arxiv.org/abs/1411.1792
 remove_from_layer = 'block4_pool'
 
 # add fully connected layers on top of base model
@@ -56,26 +56,27 @@ architecture = [fc_1,fc_2]
 
 # create the CNN model object
 # explanation:
-# the model will use X as the training data with y as the target labels
-# the training data will be augmented with rotation/shift/zoom and horizontal/
-#   vertical flipping ('default' settings)
-# global average pooling will be applied to the output of the last convolutional
-#   layers (pooling='avg') before the fully connected layers
-# since we are dealing with a binary classification problem, we use the 'sigmoid'
-#   output layer and 'binary_crossentropy' as a loss function
-# we are using early stopping on the validation data (20% of training data)
-# training will occur on mini batches of size 32
-# the only pre-processing VGG16 does is subtracting the mean RGB value, so we
-#   won't apply normalization/standardization on the input images
-# many more parameters can be set manually but are set to their default values
-#   in this example, see documentation in modules for more options
+# The model will use X as the training data with y as the target labels.
+# The training data will be augmented with rotation/shift/zoom and horizontal/
+#   vertical flipping (augment_data='default').
+# Global average pooling will be applied to the output of the last convolutional
+#   layers (pooling='avg') before the fully connected layers.
+# Since we are dealing with a binary classification problem, we use the 'sigmoid'
+#   output layer and 'binary_crossentropy' as a loss function.
+# We are using early stopping on the validation data (20% of training data)
+#   and training will occur on mini batches of size 32.
+# The only pre-processing VGG16 does is subtracting the mean RGB value, so we
+#   won't apply normalization/standardization on the input images.
+# More parameters can be set manually but are kept at their default values
+#   in this example, see documentation in modules for more options.
 
 cnntl = CNNTransferLearning(X,y,architecture,base_model,remove_from_layer=remove_from_layer,
                             X_pred=X_pred,train_id=train_ids,pred_id=test_ids,
                             output_layer='sigmoid',loss_function='binary_crossentropy',pooling='avg',
                             augment_data='default',early_stopping_epochs=30,
                             custom_eval_stopping={'name':'binary_crossentropy','mode':'min','data':'val'},
-                            batch_size=32,val_size=0.2,save_dir=save_dir,model_name='statoil_vgg16',target_col=['is_iceberg'])
+                            batch_size=32,val_size=0.2,save_dir=save_dir,model_name='statoil_vgg16',
+                            target_col=['is_iceberg'])
                             
 # train the model and save the model weights
 # one epoch should take <10s on a GPU
