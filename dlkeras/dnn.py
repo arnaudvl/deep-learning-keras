@@ -8,6 +8,8 @@ import pandas as pd
 from sklearn.model_selection import StratifiedKFold
 from sklearn.preprocessing import Imputer, MinMaxScaler, StandardScaler
 
+from dlkeras.nn import NN
+
 class DNN(NN):
     
     """
