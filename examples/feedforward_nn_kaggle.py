@@ -52,7 +52,7 @@ architecture = [fc_1,fc_2,fc_3,fc_4]
 # We are using early stopping on the validation data (20% of training data),
 #   using the roc-auc metric.
 # Training will occur on mini batches of size 32.
-# More parameters can be set manually but are set to their default values
+# More parameters can be set manually but are kept at their default values
 #   in this example, see documentation in modules for more options.
 cols_scaler = ['ps_ind_01','ps_ind_03','ps_ind_14','ps_ind_15',
                'ps_reg_01','ps_reg_02','ps_reg_03','ps_car_11',
