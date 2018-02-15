@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from dlkeras.cnn_tl import CNNTransferLearning
+from dlkeras.cnn_transfer_learning import CNNTransferLearning
 
 # For the transfer learning example we will use the kaggle dataset
 # from the Statoil competition. In this competition, we need to
