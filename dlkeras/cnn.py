@@ -7,6 +7,8 @@ from keras.regularizers import l1
 import numpy as np
 from sklearn.model_selection import StratifiedKFold
 
+from dlkeras.nn import NN
+
 class CNN(NN):
     
     """
