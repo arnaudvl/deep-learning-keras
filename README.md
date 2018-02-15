@@ -5,6 +5,8 @@ The dlkeras package allows you to easily create, train and make predictions with
 
 ### Prerequisites
 
+Make sure you have up-to-date versions installed of:
+
   - keras
   - numpy
   - pandas
