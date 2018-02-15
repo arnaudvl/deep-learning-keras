@@ -11,6 +11,8 @@ from keras.models import Model, load_model
 from keras.regularizers import l1
 import numpy as np
 
+from dlkeras.cnn import CNN
+
 class CNNTransferLearning(CNN):
     
     """
