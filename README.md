@@ -26,10 +26,8 @@ There are 3 modules in dlkeras: cnn, cnn_transfer_learning and dnn.
 Each of them allow you to create and train neural networks, make predictions,
 print the training history, save models, run cross-validation and make out-of-fold predictions in a few lines of code.
 
-cnn and cnn_transfer_learning also facilitate on the fly image augmentation, allow for additional non-image input data, and apply image scaling.
+cnn and cnn_transfer_learning deal with convolutional neural nets. They also facilitate on the fly image augmentation, allow for additional non-image input data, and apply image scaling. cnn_transfer_learning allows transfer learning from a range of base models, can find the optimal layer to truncate the base model from and fine tunes the base model layers.
 
-cnn_transfer_learning allows transfer learning from a range of base models, can find the optimal layer to truncate the base model from and fine tunes the base model layers.
-
-dnn has convenient ways to scale the input data and apply one-hot-encoding.
+dnn is made for feedforward deep neural nets and has convenient ways to scale the input data and apply one-hot-encoding.
 
 The functionality is illustrated in the examples.
