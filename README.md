@@ -15,7 +15,7 @@ Make sure you have up-to-date versions installed of:
 
 ### Installation
 
-Clone of the repository in your local workspace:
+Clone the repository in your local workspace:
 
 git clone https://github.com/arnaudvl/deep-learning-keras
 
