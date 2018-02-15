@@ -29,26 +29,30 @@ class CNNTransferLearning(CNN):
         """
         Arguments:
             base_model -- str, model used for transfer learning
-                               options: 'VGG16','VGG19','ResNet50','Xception','InceptionV3','InceptionResNetV2','MobileNet'
+                               options: 'VGG16','VGG19','ResNet50','Xception','InceptionV3',
+                                        'InceptionResNetV2','MobileNet'
             trainable_layers -- list, names of layers base model to retrain weights from, default=None
-            remove_from_layer -- str, name of layer from which the base model's layers are removed, including 'remove_from_layer',
-                                      eg 'block5_conv1' will remove the 'block5_conv1' until 'block5_pool' layers and add the
-                                      pooling/flattening and fully connected layers defined in the architecture on top,
-                                      default=None
-            trainable_layers_tune -- list, names of layers base model to retrain weights from during model tuning, default=None
-            remove_from_layer_tune -- list, names of layers from where base model's layers are removed during tuning, default=None
+            remove_from_layer -- str, name of layer from which the base model's layers are removed, including 
+                                      'remove_from_layer', eg 'block5_conv1' will remove the 'block5_conv1' until 
+                                      'block5_pool' layers and add the pooling/flattening and fully connected layers 
+                                      defined in the architecture on top, default=None
+            trainable_layers_tune -- list, names of layers base model to retrain weights from during model tuning, 
+                                           default=None
+            remove_from_layer_tune -- list, names of layers from where base model's layers are removed during tuning, 
+                                            default=None
             
             See class CNN for documentation of other arguments. 
         """
         
         CNN.__init__(self,X,y,architecture,X_aux=X_aux,output_layer=output_layer,optimizer_type=optimizer_type,
-                     loss_function=loss_function,metrics=metrics,learning_rate=learning_rate,learning_rate_decay=learning_rate_decay,
-                     learning_rate_factor=learning_rate_factor,num_epochs=num_epochs,early_stopping_epochs=early_stopping_epochs,
-                     custom_eval_stopping=custom_eval_stopping,nfolds=nfolds,batch_size=batch_size,pooling=pooling,runs=runs,
-                     val_size=val_size,random_state=random_state,X_pred=X_pred,X_aux_pred=X_aux_pred,train_id=train_id,
-                     pred_id=pred_id,scale_data=scale_data,augment_data={},scale_pre_concat=scale_pre_concat,load_wgt=load_wgt,
-                     print_out=print_out,print_training=print_training,write_output=write_output,save_dir=save_dir,
-                     model_name=model_name,target_col=target_col,id_col=id_col)
+                     loss_function=loss_function,metrics=metrics,learning_rate=learning_rate,
+                     learning_rate_decay=learning_rate_decay,learning_rate_factor=learning_rate_factor,
+                     num_epochs=num_epochs,early_stopping_epochs=early_stopping_epochs,
+                     custom_eval_stopping=custom_eval_stopping,nfolds=nfolds,batch_size=batch_size,pooling=pooling,
+                     runs=runs,val_size=val_size,random_state=random_state,X_pred=X_pred,X_aux_pred=X_aux_pred,
+                     train_id=train_id,pred_id=pred_id,scale_data=scale_data,augment_data={},
+                     scale_pre_concat=scale_pre_concat,load_wgt=load_wgt,print_out=print_out,print_training=print_training,
+                     write_output=write_output,save_dir=save_dir,model_name=model_name,target_col=target_col,id_col=id_col)
                      
         self.base_model = base_model
         self.trainable_layers = trainable_layers
@@ -84,8 +88,8 @@ class CNNTransferLearning(CNN):
         elif self.base_model=='MobileNet':
             base_model = MobileNet(weights='imagenet', include_top=False, input_shape=self.X.shape[1:])
         else:
-            raise ValueError('Valid base model values are: "VGG16","VGG19","ResNet50","Xception","InceptionV3", \
-                             "InceptionResNetV2","MobileNet".')
+            raise ValueError('Valid base model values are: "VGG16","VGG19","ResNet50","Xception", \
+                             "InceptionV3","InceptionResNetV2","MobileNet".')
         return base_model
     
     
