@@ -69,8 +69,9 @@ architecture = [fc_1,fc_2]
 #   output layer and 'binary_crossentropy' as a loss function.
 # We are using early stopping on the validation data (20% of training data)
 #   and training will occur on mini batches of size 32.
-# The only pre-processing VGG16 does is subtracting the mean RGB value, so we
-#   won't apply normalization/standardization on the input images.
+# The only pre-processing the pre-trained VGG16 model did is subtracting the 
+#   mean RGB value, so we won't apply normalization/standardization on the 
+#   input images.
 # More parameters can be set manually but are kept at their default values
 #   in this example, see documentation in modules for more options.
 
