@@ -1,3 +1,6 @@
+import pandas as pd
+
+from dlkeras.dnn import DNN
 
 # For the feedforward deep neural network example we will use the kaggle dataset
 # from the Porto Seguro competition. In this competition, you’re challenged to 
