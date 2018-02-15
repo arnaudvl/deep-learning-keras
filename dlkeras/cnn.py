@@ -1,10 +1,10 @@
-import numpy as np
 from keras.layers import concatenate, Dense, Dropout, Flatten, Activation, Conv2D, Input
 from keras.layers import GlobalAveragePooling2D, GlobalMaxPooling2D, AveragePooling2D, MaxPooling2D
 from keras.layers.normalization import BatchNormalization
 from keras.models import Model, load_model
 from keras.preprocessing.image import ImageDataGenerator
 from keras.regularizers import l1
+import numpy as np
 from sklearn.model_selection import StratifiedKFold
 
 class CNN(NN):
