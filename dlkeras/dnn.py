@@ -11,12 +11,14 @@ class DNN(NN):
         - cv_train_predict_model: run nfold CV on neural net and make predictions on test data
     """
     
-    def __init__(self,X,y,architecture,output_layer='softmax',optimizer_type='adam',loss_function='categorical_crossentropy',
-                 metrics=['accuracy'],learning_rate=0.001,learning_rate_decay=0.,learning_rate_factor=0.1,num_epochs=10000,
-                 early_stopping_epochs=100,custom_eval_stopping={'name':'roc-auc','mode':'max','data':'val'},nfolds=5,
-                 batch_size=64,runs=3,val_size=0.2,random_state=1,scaler={'type':'minmax','columns':'all'},imputer='median',
-                 dummify=[],preprocessed=False,X_pred=None,train_id=None,pred_id=None,print_out=True,print_training=True,
-                 write_output=False,save_dir=None,model_name=None,target_col=['target'],id_col='id'):
+    def __init__(self,X,y,architecture,output_layer='softmax',optimizer_type='adam',
+                 loss_function='categorical_crossentropy',metrics=['accuracy'],learning_rate=0.001,
+                 learning_rate_decay=0.,learning_rate_factor=0.1,num_epochs=10000,
+                 early_stopping_epochs=100,custom_eval_stopping={'name':'roc-auc','mode':'max','data':'val'},
+                 nfolds=5,batch_size=64,runs=3,val_size=0.2,random_state=1,scaler={'type':'minmax','columns':'all'},
+                 imputer='median',dummify=[],preprocessed=False,X_pred=None,train_id=None,pred_id=None,
+                 print_out=True,print_training=True,write_output=False,save_dir=None,model_name=None,
+                 target_col=['target'],id_col='id'):
         
         """
         Arguments:
@@ -27,8 +29,8 @@ class DNN(NN):
             X_pred -- np array, data on which predictions are made, default=None
             runs -- int, number of runs over each fold in CV with different random seed, default=3
             train_id -- np array, id's of training data, default=None
-            scaler -- dict, keys 'type' and 'columns' specify the type of scaling and a list to which columns scaling is applied
-                            or 'all' if applied to all columns, default={'type':'minmax','columns':'all'}
+            scaler -- dict, keys 'type' and 'columns' specify the type of scaling and a list to which columns scaling is
+                            applied or 'all' if applied to all columns, default={'type':'minmax','columns':'all'}
             imputer -- str, imputing applied to replace nan's in training and prediction data, default='median'
             dummify -- list, names of training columns that end with dummify will be used for OHE, default=None
             preprocessed -- bool, preprocessing will be applied if False, default=False 
@@ -38,11 +40,12 @@ class DNN(NN):
             See class NN for documentation of other arguments. 
         """
         
-        NN.__init__(self,X,y,architecture,output_layer=output_layer,optimizer_type=optimizer_type,loss_function=loss_function,
-                    metrics=metrics,learning_rate=learning_rate,learning_rate_decay=learning_rate_decay,
-                    learning_rate_factor=learning_rate_factor,early_stopping_epochs=early_stopping_epochs,
-                    custom_eval_stopping=custom_eval_stopping,val_size=val_size,pred_id=pred_id,
-                    write_output=write_output,save_dir=save_dir,model_name=model_name,target_col=target_col,id_col=id_col)
+        NN.__init__(self,X,y,architecture,output_layer=output_layer,optimizer_type=optimizer_type,
+                    loss_function=loss_function,metrics=metrics,learning_rate=learning_rate,
+                    learning_rate_decay=learning_rate_decay,learning_rate_factor=learning_rate_factor,
+                    early_stopping_epochs=early_stopping_epochs,custom_eval_stopping=custom_eval_stopping,
+                    val_size=val_size,pred_id=pred_id,write_output=write_output,save_dir=save_dir,
+                    model_name=model_name,target_col=target_col,id_col=id_col)
         
         self.num_epochs = num_epochs
         self.nfolds = nfolds
@@ -353,8 +356,6 @@ class DNN(NN):
             for run in range(self.runs):
                 print('\n Fold %d - Run %d\n' % ((i + 1), (run + 1)))
                 np.random.seed()
-                
-#                self.init_classifier(i=i,run=run) # initalize neural net with callbacks
                 
                 self.train_model(i=i,run=run) # train neural net
                 
