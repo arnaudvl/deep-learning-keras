@@ -1,16 +1,16 @@
 
 # For the CNN example we will use the kaggle dataset
-# from the Statoil competition. In this competition, we need to classify
-# ships and icebergs from satellite images.
+# from the Statoil competition. In this competition, we need to
+# classify ships and icebergs in satellite images.
 # The data can be found through the link below:
 # https://www.kaggle.com/c/statoil-iceberg-classifier-challenge/data
 
 # directory where results will be saved
-save_dir = '/home/arnaudvl/ML/kaggle/statoil/output/test/'
+save_dir = '/.../output/'
 
 # specify train and test data paths
-path_train = '/home/arnaudvl/ML/kaggle/statoil/input/train.json'
-path_test = '/home/arnaudvl/ML/kaggle/statoil/input/test.json'
+path_train = '/.../input/train.json'
+path_test = '/.../input/test.json'
 
 # load data
 train_raw = pd.read_json(path_train, precise_float=True)
@@ -88,19 +88,19 @@ architecture = [conv2d_1,max_pooling2d_1,dropout_1,
 
 # create the CNN model object
 # explanation:
-# the model will use X as the training data with y as the target labels
-# the image data will be scaled using mean normalization ('meannorm')
-# the training data will be augmented with rotation/shift/zoom and horizontal/
-#   vertical flipping ('default' settings)
-# the angle data will be fed into the model just before the fully connected layers
-# the output of the last convolutional layers will be flattened (pooling='flat')
-#   before the fully connected layers
-# since we are dealing with a binary classification problem, we use the 'sigmoid'
-#   output layer and 'binary_crossentropy' as a loss function
-# we are using early stopping on the validation data (20% of training data)
-# training will occur on mini batches of size 32
-# many more parameters can be set manually but are set to their default values
-#   in this example, see documentation in modules for more options
+# The model will use X as the training data with y as the target labels.
+# The image data will be scaled using mean normalization (scale_data='meannorm').
+# The training data will be augmented with rotation/shift/zoom and horizontal/
+#   vertical flipping (augment_data='default').
+# The angle data will be fed into the model just before the fully connected layers.
+# The output of the last convolutional layers will be flattened (pooling='flat')
+#   before the fully connected layers.
+# Since we are dealing with a binary classification problem, we use the 'sigmoid'
+#   output layer and 'binary_crossentropy' as a loss function.
+# We are using early stopping on the validation data (20% of training data)
+#   and training will occur on mini batches of size 32.
+# More parameters can be set manually but are kept at their default values
+#   in this example, see documentation in modules for more options.
                 
 cnn = CNN(X,y,architecture,X_aux=X_aux,X_pred=X_pred,X_aux_pred=X_aux_pred,train_id=train_ids,pred_id=test_ids,
           output_layer='sigmoid',loss_function='binary_crossentropy',pooling='flat',
