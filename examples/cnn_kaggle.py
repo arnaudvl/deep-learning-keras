@@ -1,3 +1,8 @@
+import numpy as np
+import os
+import pandas as pd
+
+from dlkeras.cnn import CNN
 
 # For the CNN example we will use the kaggle dataset
 # from the Statoil competition. In this competition, we need to
