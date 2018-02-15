@@ -7,11 +7,11 @@
 # https://www.kaggle.com/c/porto-seguro-safe-driver-prediction/data
 
 # directory where results will be saved
-save_dir = '/home/arnaudvl/ML/kaggle/porto_seguro/models'
+save_dir = '/.../output/'
 
 # specify train and test data paths
-path_train = '/home/arnaudvl/ML/kaggle/porto_seguro/input/train.csv'
-path_test = '/home/arnaudvl/ML/kaggle/porto_seguro/input/test.csv'
+path_train = '/.../input/train.csv'
+path_test = '/.../input/test.csv'
 
 # load data
 train_raw = pd.read_csv(path_train,na_values=-1)
@@ -49,7 +49,7 @@ architecture = [fc_1,fc_2,fc_3,fc_4]
 # We are using early stopping on the validation data (20% of training data),
 #   using the roc-auc metric.
 # Training will occur on mini batches of size 32.
-# Many more parameters can be set manually but are set to their default values
+# More parameters can be set manually but are set to their default values
 #   in this example, see documentation in modules for more options.
 cols_scaler = ['ps_ind_01','ps_ind_03','ps_ind_14','ps_ind_15',
                'ps_reg_01','ps_reg_02','ps_reg_03','ps_car_11',
@@ -60,13 +60,12 @@ dnn = DNN(X,y,architecture,X_pred=X_pred,train_id=train_ids,pred_id=test_ids,
           early_stopping_epochs=10,batch_size=32,val_size=0.2,dummify='cat',
           scaler={'type':'minmax','columns':cols_scaler},save_dir=save_dir,model_name='dnn')
 
-# train the model, save the model, print the training history,
+# train and save the model, print the training history,
 # make predictions and write predictions in csv file
 dnn.train_model()
 dnn.save_model()
-# prints training/validation loss (binary_crossentropy), 
-# not necessarily the metric used for early stopping (roc-auc)
-dnn.print_training_history()
+dnn.print_training_history() # prints training/validation loss (binary_crossentropy),
+                             # not necessarily the metric used for early stopping (roc-auc)
 dnn.predict_model()
 dnn.write_results()
 
