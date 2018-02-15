@@ -31,3 +31,5 @@ cnn and cnn_tl also facilitate on the fly image augmentation, allow for addition
 cnn_tl allows transfer learning from a range of base models, can find the optimal layer to truncate the base model from and fine tunes the base model layers.
 
 dnn has convenient ways to scale the input data and apply one-hot-encoding.
+
+The functionality is illustrated in the examples.
